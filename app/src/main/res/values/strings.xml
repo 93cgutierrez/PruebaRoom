@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PruebaRoom</string>
+    <string name="created">Created</string>
+    <string name="read">Read</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="previous">Previous</string>
 </resources>
