@@ -17,4 +17,14 @@ public class Person {
     String lastName;
     @ColumnInfo(name = "address")
     String address;
+
+    public Person() {
+    }
+
+    public Person(Integer id, String name, String lastName, String address) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.address = address;
+    }
 }
