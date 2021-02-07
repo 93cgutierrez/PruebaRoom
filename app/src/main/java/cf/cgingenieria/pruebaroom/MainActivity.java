@@ -18,6 +18,7 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getCanonicalName();
     private ActivityMainBinding binding;
+    private PersonDatabase personDatabase = AppBase.getPersonDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,6 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.buttonRead.setOnClickListener(view -> {
             new Thread(() -> {
-                PersonDatabase personDatabase = Room.databaseBuilder(
-                        this,
-                        PersonDatabase.class,
-                        "database-person")
-                        .build();
                 List<Person> personList = personDatabase.personDao().getAllPerson();
                 Log.d(TAG, "onCreate: personListSize:: " + personList.size());
             }).start();
