@@ -38,8 +38,20 @@ public class MainActivity extends AppCompatActivity {
             }).start();
         });
         binding.buttonRead.setOnClickListener(view -> new Thread(() -> {
-            List<Person> personList = personDatabase.personDao().getAllPerson();
-            Log.d(TAG, "onCreate: personListSize:: " + personList.size());
+            List<Person> personList = personDatabase
+                    .personDao()
+                    .getAllPerson();
+            Log.d(TAG, "onClick: PersonList:: " + personList.size());
+            StringBuilder stringlist = new StringBuilder("");
+            for (Person person : personList) {
+                stringlist.append(person.getId()).append(" - ").append(person.getName()).append(" - ").append(person.getLastName()).append(" - ").append(person.getAddress()).append("\n");
+            }
+            view.post(() -> {
+                /* the desired UI update */
+                binding.textviewRead.setText(stringlist);
+            });
+            Snackbar.make(view, "size:: " + personList.size(), Snackbar.LENGTH_LONG)
+                    .show();
         }).start());
         binding.buttonUpdate.setOnClickListener(view -> {
             //Realizar operacion bd en hilos secundarios
